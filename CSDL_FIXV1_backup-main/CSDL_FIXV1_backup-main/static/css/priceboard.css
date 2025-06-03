@@ -1,0 +1,647 @@
+/* Priceboard specific styles */
+.priceboard-container {
+    width: 96%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Tab styles */
+.priceboard-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-light);
+    padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    margin: 0 5px;
+    background: var(--color-light);
+    border: none;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    color: var(--color-dark);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.tab-content {
+    display: block !important;
+    margin-bottom: 2rem;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Index card styles */
+.index-card {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--color-light);
+    transition: transform 0.2s ease-in-out;
+}
+
+.index-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+}
+
+.index-info {
+    flex-grow: 1;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.index-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.index-value {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+}
+
+.index-change {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+.index-change.positive {
+    color: var(--color-success);
+}
+
+.index-change.negative {
+    color: var(--color-danger);
+}
+
+.mini-chart {
+    width: 12vw !important;
+    height: 8vh !important;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+/* Treemap styles */
+#treemap {
+    width: 100%;
+    height: 500px;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--color-light);
+    border-radius: var(--border-radius-1);
+    background: var(--color-white);
+    color: var(--color-dark);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-primary);
+}
+
+/* Result box styles */
+.result-box {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.result-box h4 {
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+
+.result-box p {
+    margin: 0.5rem 0;
+    color: var(--color-dark-variant);
+}
+
+.result-box .value {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Stock table styles */
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.stock-table th,
+.stock-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-light);
+}
+
+.stock-table th {
+    background: var(--color-background);
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.stock-table .positive {
+    color: var(--color-success);
+}
+
+.stock-table .negative {
+    color: var(--color-danger);
+}
+
+/* Loading and error states */
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.loading-spinner {
+    border: 4px solid var(--color-light);
+    border-left-color: var(--color-primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+    display: block;
+}
+
+#loading p {
+    color: var(--color-dark-variant);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error-message,
+.error {
+    color: var(--color-danger);
+    text-align: center;
+    padding: 1rem;
+    background: var(--color-white);
+    border-radius: var(--border-radius-1);
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+/* News styles */
+.news-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+#newsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#newsList>div {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+#newsList>div:hover {
+    transform: translateX(10px);
+    background: var(--color-light);
+    border-left: 4px solid var(--color-success);
+}
+
+#newsList h3 {
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+#newsList p {
+    color: var(--color-dark-variant);
+    font-size: 0.9rem;
+}
+
+/* Popup styles */
+.overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 80vw;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+}
+
+.popup p {
+    margin-bottom: 1rem;
+    color: var(--color-dark-variant);
+    line-height: 1.6;
+}
+
+#popupContent {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--color-light);
+    border-radius: var(--border-radius-1);
+}
+
+#popupPublished {
+    font-size: 0.9rem;
+    color: var(--color-dark-variant);
+    font-style: italic;
+}
+
+.popup a {
+    color: var(--color-primary);
+    text-decoration: none;
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: var(--color-light);
+    border-radius: var(--border-radius-1);
+    transition: all 0.3s ease;
+}
+
+.popup a:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.popup button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--color-dark);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.popup button .material-symbols-outlined {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.popup button:hover {
+    background: var(--color-light);
+}
+
+.popup button:hover .material-symbols-outlined {
+    transform: rotate(90deg);
+    color: var(--color-danger);
+}
+
+/* Scrollbar styles for popup and newsList */
+.popup::-webkit-scrollbar,
+#newsList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup::-webkit-scrollbar-track,
+#newsList::-webkit-scrollbar-track {
+    background: var(--color-light);
+    border-radius: 4px;
+}
+
+.popup::-webkit-scrollbar-thumb,
+#newsList::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+.popup::-webkit-scrollbar-thumb:hover,
+#newsList::-webkit-scrollbar-thumb:hover {
+    background: var(--color-dark);
+}
+
+/* CSS Chỉ số tài chính */
+
+#indices-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.col-md-4.mb-4 {
+    flex: 1;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .priceboard-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+    }
+
+    .index-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mini-chart {
+        margin: 1rem 0 0 0;
+    }
+
+    .stock-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .popup {
+        width: 95vw;
+        max-height: 90vh;
+        padding: 1.5rem;
+    }
+
+    #newsList {
+        max-height: 60vh;
+    }
+
+    #newsList>div {
+        padding: 1rem;
+    }
+
+    .popup h2 {
+        font-size: 1.2rem;
+        padding-right: 2rem;
+    }
+}
+
+.index-card {
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s ease-in-out;
+}
+
+.index-card:hover {
+    transform: translateY(-3px);
+    /* Nhấc card lên một chút khi hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-info {
+    flex-grow: 1;
+    /* Cho phép phần thông tin co giãn */
+    margin-right: 15px;
+    /* Khoảng cách với biểu đồ */
+    overflow: hidden;
+    /* Tránh text tràn ra ngoài */
+}
+
+.index-name {
+    font-weight: 600;
+    /* Đậm hơn một chút */
+    margin-bottom: 8px;
+    color: #495057;
+    white-space: nowrap;
+    /* Không xuống dòng tên chỉ số */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Hiển thị ... nếu quá dài */
+}
+
+.index-value {
+    font-size: 1.6em;
+    /* To hơn */
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #212529;
+}
+
+.index-change {
+    font-size: 0.95em;
+    /* Nhỏ hơn một chút */
+    font-weight: 500;
+}
+
+.index-change.positive {
+    color: #198754;
+    /* Màu xanh lá đậm hơn */
+}
+
+.index-change.negative {
+    color: #dc3545;
+    /* Màu đỏ */
+}
+
+.mini-chart {
+    width: 12vw !important;
+    height: 8vh !important;
+    flex-shrink: 0;
+}
+
+/* ================= CSS từ inline styles trong priceboard.html ================= */
+
+/* Tab content styles */
+.tab-content {
+    display: block !important;
+    margin-bottom: 2rem;
+}
+
+/* Tab button styles */
+.tab-btn {
+    margin: 0 5px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 4px;
+    background: var(--color-light);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Bảng giá styles */
+#tab-bang-gia h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-dark);
+}
+
+#stock-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#stock-table-container thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primary);
+}
+
+#stock-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--card-border-radius);
+}
+
+#stock-table-container thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+#stock-table-container th,
+#stock-table-container td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-light);
+}
+
+/* News section styles */
+#tab-news {
+    padding-left: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#tab-news::-webkit-scrollbar {
+    display: none;
+}
+
+.news-item {
+    padding: 15px;
+    background-color: var(--color-light);
+    border-radius: var(--card-border-radius);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.news-item:hover {
+    background-color: var(--color-light);
+}
+
+/* Error and status styles */
+.error {
+    margin-top: 15px;
+    color: var(--color-danger);
+    text-align: center;
+    font-weight: bold;
+}
+
+.positive {
+    color: var(--color-success);
+    font-weight: bold;
+}
+
+.negative {
+    color: var(--color-danger);
+    font-weight: bold;
+}
+
+.neutral {
+    color: var(--color-dark-variant);
+}

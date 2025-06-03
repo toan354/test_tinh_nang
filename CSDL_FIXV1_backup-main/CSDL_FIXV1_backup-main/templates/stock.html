@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Đây là trang web phân tích chứng khoán">
+    <meta name="keywords" content="Tài chính, chứng khoán, cổ phiếu, ngân hàng">
+    <meta name="author" content="Dashboard Finance">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
+    <link rel="stylesheet" href="/static/css/stock.css?v=2">
+    <link rel="stylesheet" href="/static/css/responsive.css?v=2">
+    <script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
+    <title>Dashboard Finance</title>
+
+</head>
+
+<body>
+    <div class=" container">
+        <!-- Header Section -->
+        <header>
+            <div>
+                <a href="#" class="logo" target="logo">
+                    <img src="/static/images/logo_SSI.jpg">
+                    <h2>Dash<span class="danger">board</span></h2>
+                </a>
+            </div>
+
+            <div class="index_stock layout_template">
+            </div>
+
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>
+
+                <div class="profile">
+                    <!-- <div class="info">
+                        <p>Hey, <b>Reza</b></p>
+                    </div> -->
+                </div>
+
+            </div>
+        </header>
+        <!-- End of Header Section -->
+
+        <!-- Sidebar Section -->
+        <aside id="navbar">
+            <div class="close" id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </div>
+            <nav>
+                <ul class="layout_template sidebar">
+                    <li>
+                        <a href="/priceboard" class="first_icon">
+                            <span class="material-icons-sharp ">dashboard</span>
+                            <h3>Price board</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/stock">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Stock</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/information">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Information</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/report">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Report</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/analytics">
+                            <span class="material-icons-sharp">insights</span>
+                            <h3>Analytics</h3>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- End of Sidebar Section -->
+
+        <!-- Main Content -->
+        <main id="main">
+            <div class="stock-header layout_template"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="display: flex; flex-direction: column; gap: 1rem; padding-left: 4rem;">
+                    <h2 style="font-weight: bold;font-size: 2rem;">Thông tin cổ phiếu ngân hàng</h2>
+                    <form method="get" action="/">
+                        <label for="bank_code">Chọn mã cổ phiếu:</label>
+                        <select name="bank_code" onchange="this.form.submit()">
+                            {% for sym in bank_codes %}
+                            <option value="{{ sym }}" {% if sym==selected %}selected{% endif %}>{{ sym }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+
+                <div class="stock-info">
+                    {% if stock_info %}
+                    <div class="symbol-info">
+                        {{ stock_info.symbol }}
+                        <span class="exchange">(HOSE)</span>
+                    </div>
+
+                    <div class="company-name">
+                        {{ stock_info.company_name }}
+                    </div>
+
+                    <div class="price-info">
+                        {{ stock_info.close | round(2) }}
+                        {% if stock_info.percent_change is not none %}
+                        <span
+                            class="change {% if stock_info.percent_change > 0 %}positive{% elif stock_info.percent_change < 0 %}negative{% else %}neutral{% endif %}">
+                            {% if stock_info.percent_change > 0 %}+{% endif %}{{ stock_info.percent_change | round(2)
+                            }}%
+                        </span>
+                        {% else %}
+                        <span class="no-data">(Không đủ dữ liệu)</span>
+                        {% endif %}
+                    </div>
+
+                    {% if stock_info.volume is defined %}
+                    <div class="volume-info">
+                        KL: {{ "{:,.0f}".format(stock_info.volume) }} CP
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p class="no-data">Không có thông tin giá để hiển thị.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="stock-content"
+                style="display:grid;grid-template-columns: repeat(2,1fr);gap: 1rem; grid-template-rows: repeat(2,400px); margin-bottom: 1rem; ">
+                <div class="box">
+                    <h1 class="header header-blue">Hồ sơ công ty</h1>
+                    <pre>{{ company_profile }}</pre>
+                </div>
+
+                <div class="box">
+                    <h1 class="header header-blue">Các sự kiện nổi bật</h1>
+                    <pre>{{ key_developments }}</pre>
+                </div>
+
+                <div class="box">
+                    <h1 class="header header-blue">Cơ cấu cổ đông</h1>
+                    {{ shareholders_html | safe }}
+                </div>
+
+                <div class="box">
+                    <h1 class="header header-blue">Ban lãnh đạo</h1>
+                    {{ officers_html | safe }}
+                </div>
+            </div>
+
+            <div class="header box">
+                <p style="font-size: 1.8rem;padding: 1rem;color: var(--color-primary);font-weight: bold;">Bảng giá cổ
+                    phiếu {{ selected }}</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Open</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Close</th>
+                            <th>Volume</th>
+                            <th>Thay đổi</th>
+                            <th>% Thay đổi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in price_data[:5] %}
+                        <tr>
+                            <td>{{ row.time[:10] }}</td>
+                            <td>{{ row.open }}</td>
+                            <td>{{ row.high }}</td>
+                            <td>{{ row.low }}</td>
+                            <td>{{ row.close }}</td>
+                            <td>{{ row.volume }}</td>
+                            <td>{{ row.change if row.change is not none else '-' }}</td>
+                            <td>{{ row.percent_change if row.percent_change is not none else '-' }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h1 class="chart-container box">
+                <div id="priceChart"></div>
+            </h1>
+
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Lấy dữ liệu từ Jinja2 template
+                    const priceData = {{ price_data | tojson | safe
+                }};
+
+                // Chuẩn bị dữ liệu cho biểu đồ
+                const dates = priceData.map(item => item.time.substring(0, 10));
+                const closePrices = priceData.map(item => item.close);
+                const volumes = priceData.map(item => item.volume);
+
+                // Tạo biểu đồ nến
+                const trace = {
+                    x: dates,
+                    close: closePrices,
+                    high: priceData.map(item => item.high),
+                    low: priceData.map(item => item.low),
+                    open: priceData.map(item => item.open),
+                    type: 'candlestick',
+                    name: 'Giá',
+                    yaxis: 'y2',
+                    increasing: { line: { color: '#26a69a' } },
+                    decreasing: { line: { color: '#ef5350' } }
+                };
+
+                const volumeTrace = {
+                    x: dates,
+                    y: volumes,
+                    type: 'bar',
+                    name: 'Khối lượng',
+                    yaxis: 'y',
+                    marker: {
+                        color: 'rgba(0, 123, 255, 0.5)'
+                    }
+                };
+
+                const layout = {
+                    title: 'Biểu đồ giá cổ phiếu {{ selected }}',
+                    yaxis: {
+                        title: 'Khối lượng',
+                        domain: [0, 0.2]
+                    },
+                    yaxis2: {
+                        title: 'Giá (VND)',
+                        domain: [0.2, 1]
+                    },
+                    xaxis: {
+                        rangeslider: {
+                            visible: false
+                        }
+                    },
+                    showlegend: true,
+                    legend: {
+                        x: 0,
+                        y: 1
+                    },
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        b: 50,
+                        t: 50,
+                        pad: 4
+                    }
+                };
+
+                const config = {
+                    responsive: true,
+                    scrollZoom: true,
+                    displayModeBar: true,
+                    modeBarButtonsToAdd: ['drawline', 'drawopenpath', 'eraseshape'],
+                    modeBarButtonsToRemove: ['lasso2d']
+                };
+
+                Plotly.newPlot('priceChart', [trace, volumeTrace], layout, config);
+                });
+            </script>
+        </main>
+        <!-- End of Main Content -->
+    </div>
+
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/stock.js"></script>
+    <script src="/static/js/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

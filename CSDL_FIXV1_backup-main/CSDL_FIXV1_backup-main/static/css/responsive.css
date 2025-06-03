@@ -1,0 +1,146 @@
+@media screen and (max-width: 1200px) {
+    .container{
+        width: 95%;
+        /* grid-template-columns: 7rem auto 23rem; */
+    }
+
+    aside .logo h2{
+        display: none;
+    }
+
+    aside .sidebar h3{
+        display: none;
+    }
+
+    aside .sidebar a{
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child{
+        position: relative;
+    }
+
+    main .analyse{
+        grid-template-columns: 1fr;
+        height: 100vh;
+        gap: 1fr;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /* .container.two-column {
+        grid-template-columns: 1fr;
+    } */
+
+    .container{
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 0 var(--padding-1);
+    }
+
+    /* .container.two-column {
+        grid-template-columns: 1fr;
+    } */
+
+    aside{
+        position: fixed;
+        background-color: var(--color-white);
+        width: 15rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        left: -100%;
+        display: none;
+        animation: showMenu 0.4s ease forwards;
+    }
+
+    @keyframes showMenu {
+       to{
+        left: 0;
+       } 
+    }
+
+    header .logo{
+        margin-left: 1rem;
+    }
+
+    aside .logo h2{
+        display: inline;
+    }
+
+    aside .sidebar h3{
+        display: inline;
+    }
+
+    aside .sidebar a{
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    /* aside .sidebar a:last-child{
+        position: absolute;
+        bottom: 5rem;
+    } */
+
+    aside .close{
+        display: flex;
+        cursor: pointer;
+        justify-content: right;
+        
+    }
+
+    main{
+        margin-top: 8rem;
+        padding: 0 1rem;
+    }
+
+    main .new-users .user-list .user{
+        flex-basis: 35%;
+    }
+
+    main .pricing_table{
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+    }
+    
+    .right-section{
+        width: 94%;
+        margin: 0 auto 4rem;
+    }
+
+    header .nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        background-color: var(--color-white);
+        padding: 0 var(--padding-1);
+        height: 4.6rem;
+        width: 100%;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+        margin: 0;
+    }
+
+    header .nav .dark-mode{
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+    }
+
+    header .nav button{
+        display: inline-block;
+        background-color: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem;
+    }
+
+    .right-section .nav button span{
+        font-size: 2rem;
+    }
+}

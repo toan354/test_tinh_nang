@@ -1,0 +1,663 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #6C9BCF;
+    --color-danger: #cd004f;
+    --color-success: #1B9C85;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 1rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.dark-mode-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+}
+
+a {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    padding: 1rem;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 0.87rem;
+}
+
+small {
+    font-size: 0.76rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+p {
+    color: var(--color-dark-variant);
+}
+
+b {
+    color: var(--color-dark);
+}
+
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+
+/* THUỘC TÍNH CHUNG CỦA CÁC PHẦN TỬ */
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1rem;
+    grid-template-rows: 3rem auto;
+    grid-template-columns: 12rem 1fr;
+}
+
+.three-columns {
+    grid-template-columns: 12rem auto 23rem;
+}
+
+/* Định dạng cho biểu đồ */
+.chart {
+    width: 100%;
+    height: 500px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.chart>div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* đổ bóng section */
+.layout_template {
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.layout_template:hover {
+    box-shadow: none;
+}
+
+/* Tùy chỉnh thanh cuộn */
+.layout_template.stock_company::-webkit-scrollbar {
+    display: none;
+}
+
+/* Phần đầu Page */
+header {
+    grid-column: 1/4;
+    display: flex;
+    align-items: flex-end;
+}
+
+header .index_stock {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+header .nav {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+header .nav button {
+    display: none;
+}
+
+header .logo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+header .logo img {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* #dark mode  */
+header .dark-mode {
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+header .dark-mode span {
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .dark-mode span.active {
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+/* end dark mode */
+/* PHẦN THANH ĐIỀU HƯỚNG */
+aside .close {
+    padding: 1rem;
+    display: none;
+}
+
+.first_icon {
+    margin-top: 3rem;
+}
+
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    height: 88vh;
+    position: relative;
+    margin-top: 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+aside .sidebar li {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+aside .sidebar li a {
+    display: flex;
+    align-items: center;
+    color: var(--color-info-dark);
+    height: 3.7rem;
+    gap: 1rem;
+    position: relative;
+    margin-left: 2rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+aside .sidebar li a span {
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+aside .sidebar li.logout-btn {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar a.active {
+    width: 100%;
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    margin-left: 0;
+}
+
+aside .sidebar a.active::before {
+    content: '';
+    width: 6px;
+    height: 18px;
+    background-color: var(--color-primary);
+}
+
+aside .sidebar a.active span {
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+/* aside .sidebar a:hover {
+    color: var(--color-primary);
+} */
+
+aside .sidebar a:hover span {
+    margin-left: 0.6rem;
+}
+
+/* sub menu */
+aside .sidebar .submenu {
+    display: none;
+    list-style: none;
+    margin-left: 1rem;
+    position: relative;
+    width: 100%;
+}
+
+aside .sidebar .submenu.open {
+    display: block;
+}
+
+aside .sidebar .submenu li {
+    padding: 0.5rem 0;
+}
+
+aside .sidebar .submenu a {
+    color: var(--color-info-dark);
+    font-size: 0.85rem;
+    height: 2rem;
+    margin-left: 0;
+    padding-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+aside .sidebar .submenu a.active {
+    color: var(--color-primary);
+    background-color: transparent;
+    margin-left: 0;
+}
+
+/* Ensure "Tổng quan" is active by default when "Stock" is selected */
+aside .sidebar li a[href*="stock"].active+.submenu a[href*="stock"] {
+    color: var(--color-primary);
+}
+
+/* PHẦN NỘI DUNG CHÍNH */
+/* Phần chung */
+
+main {
+    margin-top: 1.4rem;
+}
+
+main .layout_template {
+    border-radius: var(--card-border-radius);
+}
+
+/* Tạo Bảng */
+
+/* Bảng price_board  */
+main .pricing_table {
+    margin-top: 1.3rem;
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.pricing_table::-webkit-scrollbar {
+    width: 6px;
+}
+
+th {
+    position: sticky;
+    z-index: 1;
+}
+
+/* Thay đổi màu thanh cuộn */
+.pricing_tabler::-webkit-scrollbar-thumb {
+    /* background-color:var(--color-primary);  */
+    border-radius: var(--card-border-radius);
+    /* Bo góc cho thanh cuộn */
+}
+
+/* end */
+
+main .pricing_table h2 {
+    margin: 0.8rem;
+}
+
+main table {
+    width: 100%;
+    text-align: center;
+}
+
+
+main table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+/* main table tbody tr:last-child td {
+    border: none;
+} */
+
+
+/* Loading Indicator */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-size: 1.2rem;  
+    color: var(--color-primary);
+    background: var(--color-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    border: 2px solid var(--color-primary);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* PHẦN TIN TỨC */
+.right-section {
+    margin-top: 1.4rem;
+}
+
+/* Thanh tìm kiếm */
+.right-section input {
+    width: 100%;
+    border: 1px solid var(--color-info-dark);
+    margin-top: 1rem;
+    background-color: var(--color-background);
+    padding: 0.75rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+input:valid {
+    color: var(--color-dark);
+}
+
+.right-section input:hover {
+    box-shadow: none;
+}
+
+.right-section .news {
+    margin-top: 2rem;
+}
+
+.right-section .news .header_news {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.right-section .news .header_news span {
+    padding: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-white);
+    border-radius: 50%;
+}
+
+.right-section .news .list_news {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-2);
+    cursor: pointer;
+}
+
+.right-section .news :hover {
+    box-shadow: none;
+}
+
+.right-section .news .list_news .title_news {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+.right-section .news .add-reminder {
+    background-color: var(--color-white);
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.right-section .news .add-reminder:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.right-section .news .add-reminder div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* CSS THÀNH PHẦN CỤ THỂ */
+/* CSS PRICEBOARD */
+main .pricing_table a {
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+
+main .analyse {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    height: 50vh;
+    margin-top: 1rem;
+}
+
+main .analyse h3 {
+    margin-left: 0.6rem;
+    font-size: 1rem;
+}
+
+
+/* CSS STOCK.HTML */
+main.stock {
+    display: flex;
+    flex-direction: column;
+}
+
+main .stock_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 15vh;
+    margin-top: 1rem;
+    margin-top: 1rem;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-y: auto;
+    display: block;
+}
+
+main .stock_nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    height: 7vh;
+    margin-top: 1rem;
+}
+
+main .stock_main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    height: 60vh;
+    margin-top: 1rem;
+}
+
+
+/* Stock Information Styles */
+
+main .stock_table {
+    margin-top: 1rem;
+    position: relative;
+}
+
+.stock-info {
+    width: fit-content;
+}
+
+.symbol-info {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--color-dark);
+}
+
+.symbol-info .exchange {
+    font-size: 0.8rem;
+    color: var(--color-info-dark);
+}
+
+.company-name {
+    color: var(--color-dark-variant);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.price-info {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+.price-info .change {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.change.positive {
+    color: var(--color-success);
+}
+
+.change.negative {
+    color: var(--color-danger);
+}
+
+.change.neutral {
+    color: var(--color-info-dark);
+}
+
+.volume-info {
+    color: var(--color-info-dark);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+
+.realtime-table th,
+.history-table th {
+    color: var(--color-dark);
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid var(--color-light);
+}
+
+.realtime-table td,
+.history-table td {
+    padding: 0.75rem;
+    text-align: center;
+    color: var(--color-dark-variant);
+    border-bottom: 1px solid var(--color-light);
+}
+
+/* CSS ANALYTICS */

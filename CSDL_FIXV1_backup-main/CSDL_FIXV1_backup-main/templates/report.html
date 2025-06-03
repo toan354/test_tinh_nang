@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Đây là trang web phân tích chứng khoán">
+    <meta name="keywords" content="Tài chính, chứng khoán, cổ phiếu, ngân hàng">
+    <meta name="author" content="Dashboard Finance">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
+    <link rel="stylesheet" href="/static/css/responsive.css?v=2">
+    <title>Dashboard Finance</title>
+</head>
+
+
+<body>
+    <div class=" container">
+        <!-- Header Section -->
+        <header>
+            <div>
+                <a href="#" class="logo" target="logo">
+                    <img src="/static/images/logo_SSI.jpg">
+                    <h2>Dash<span class="danger">board</span></h2>
+                </a>
+            </div>
+
+            <div class="index_stock layout_template">
+            </div>
+
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>
+
+                <div class="profile">
+                    <!-- <div class="info">
+                        <p>Hey, <b>Reza</b></p>
+                    </div> -->
+                </div>
+
+            </div>
+        </header>
+        <!-- End of Header Section -->
+
+        <!-- Sidebar Section -->
+        <aside id="navbar">
+            <div class="close" id="close-btn">
+                <span class="material-icons-sharp">
+                    close
+                </span>
+            </div>
+            <nav>
+                <ul class="layout_template sidebar">
+                    <li>
+                        <a href="/priceboard" class="first_icon">
+                            <span class="material-icons-sharp ">dashboard</span>
+                            <h3>Price board</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/stock">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Stock</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/information">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Information</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/report">
+                            <span class="material-icons-sharp">trending_up</span>
+                            <h3>Report</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/analytics">
+                            <span class="material-icons-sharp">insights</span>
+                            <h3>Analytics</h3>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- End of Sidebar Section -->
+
+        <!-- Main Content -->
+        <main id="main">
+
+        </main>
+        <!-- End of Main Content -->
+    </div>
+
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/report.js"></script>
+    <script src="/static/js/sidebar.js"></script>
+    <!-- <script src="/static/js/priceboard.js"></script>
+    <script src="/static/js/stock.js"></script>
+    <script src="/static/js/infomation.js" ></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

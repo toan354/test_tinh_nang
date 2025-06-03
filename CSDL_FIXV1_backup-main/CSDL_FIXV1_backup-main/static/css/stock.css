@@ -1,0 +1,139 @@
+
+.header-blue {
+    color: var(--color-primary);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-white);
+}
+
+.box {
+    border: 1px solid var(--color-light);
+    border-radius: var(--card-border-radius);
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    overflow-y: auto;
+}
+
+.box pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.box::-webkit-scrollbar-track {
+    background: var(--color-light);
+    border-radius: 4px;
+}
+
+.box::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+.box::-webkit-scrollbar-thumb:hover {
+    background: var(--color-dark-variant);
+}
+
+select {
+    font-size: 16px;
+    padding: 6px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius-1);
+    border: 1px solid var(--color-light);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    padding: 6px 10px;
+    text-align: center;
+}
+
+
+.section-title {
+    margin-top: 30px;
+    font-weight: bold;
+    color: var(--color-dark);
+}
+
+.chart-container {
+    margin-top: 20px;
+    height: 500px;
+    width: 100%;
+}
+
+.stock-info {
+    /* background-color: var(--color-white); */
+    padding: var(--card-padding);
+    /* border-radius: var(--card-border-radius); */
+}
+
+.symbol-info {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-dark);
+    margin-bottom: 5px;
+}
+
+.exchange {
+    font-size: 16px;
+    color: var(--color-info-dark);
+    font-weight: normal;
+}
+
+.company-name {
+    font-size: 18px;
+    color: var(--color-dark-variant);
+    margin-bottom: 15px;
+}
+
+.price-info {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+}
+
+.change {
+    font-size: 18px;
+    margin-left: 10px;
+    padding: 4px 8px;
+    border-radius: var(--border-radius-1);
+}
+
+.change.positive {
+    color: var(--color-success);
+    background-color: rgba(27, 156, 133, 0.1);
+}
+
+.change.negative {
+    color: var(--color-danger);
+    background-color: rgba(255, 0, 96, 0.1);
+}
+
+.change.neutral {
+    color: var(--color-info-dark);
+    background-color: var(--color-light);
+}
+
+.volume-info {
+    font-size: 16px;
+    color: var(--color-dark-variant);
+}
+
+.no-data {
+    color: var(--color-info-dark);
+    font-style: italic;
+}

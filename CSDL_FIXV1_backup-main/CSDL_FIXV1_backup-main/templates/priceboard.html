@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tổng Quan Tài Chính & Chứng Khoán</title>
+  <!-- <link rel="stylesheet" href="/static/css/index.css" /> -->
+  <link rel="stylesheet" href="/static/css/bieu_do_tron.css" />
+  <link rel="stylesheet" href="/static/css/priceboard.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="/static/css/style.css?v=2">
+  <link rel="stylesheet" href="/static/css/responsive.css?v=2">
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <div>
+        <a href="#" class="logo" target="logo">
+          <img src="/static/images/logo_SSI.jpg">
+          <h2>Dash<span class="danger">board</span></h2>
+        </a>
+      </div>
+
+      <div class="index_stock layout_template">
+      </div>
+
+      <div class="nav">
+        <button id="menu-btn">
+          <span class="material-icons-sharp">
+            menu
+          </span>
+        </button>
+
+        <div class="dark-mode">
+          <span class="material-icons-sharp active">
+            light_mode
+          </span>
+          <span class="material-icons-sharp">
+            dark_mode
+          </span>
+        </div>
+
+        <div class="profile">
+          <!-- <div class="info">
+                        <p>Hey, <b>Reza</b></p>
+                    </div> -->
+        </div>
+
+      </div>
+    </header>
+    <!-- End of Header Section -->
+
+    <!-- Sidebar Section -->
+    <aside id="navbar">
+      <div class="close" id="close-btn">
+        <span class="material-icons-sharp">
+          close
+        </span>
+      </div>
+      <nav>
+        <ul class="layout_template sidebar">
+          <li>
+            <a href="/priceboard" class="first_icon">
+              <span class="material-icons-sharp">dashboard</span>
+              <h3>Price board</h3>
+            </a>
+          </li>
+          <li>
+            <a href="/api/stock">
+              <span class="material-icons-sharp">trending_up</span>
+              <h3>Stock</h3>
+            </a>
+          </li>
+          <li>
+            <a href="/api/information">
+              <span class="material-icons-sharp">trending_up</span>
+              <h3>Information</h3>
+            </a>
+          </li>
+          <li>
+            <a href="/api/report">
+              <span class="material-icons-sharp">trending_up</span>
+              <h3>Report</h3>
+            </a>
+          </li>
+          <li>
+            <a href="/api/analytics">
+              <span class="material-icons-sharp">insights</span>
+              <h3>Analytics</h3>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <!-- End of Sidebar Section -->
+
+    <!-- Main Content -->
+    <main id="main">
+      <h1 style="padding: 1rem">Tổng Quan Tài Chính & Chứng Khoán</h1>
+      <!-- Tab: Chỉ số thị trường -->
+      <div id="tab-index" class="tab-content active">
+        <h1>Chỉ số thị trường</h1>
+        <div class="mt-4">
+          <div id="indices-container" class="row justify-content-center">
+            <div id="loading" class="col-12 text-center">
+              <div class="loading-spinner"></div>
+              <p>Đang tải dữ liệu...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Treemap Vốn hóa -->
+      <div id="tab-tree-map" class="tab-content">
+        <h1>Biểu đồ Treemap - Vốn hóa Thị trường Q4/2024 </h1>
+        <div id="loading-treemap">Đang tải dữ liệu...</div>
+        <div id="error-treemap"></div>
+        <div id="treemap"></div>
+      </div>
+
+      <!-- Tab: Biểu đồ tròn -->
+      <div id="tab-bieu-do-tron" class="tab-content">
+        <h1>Biểu đồ Tài chính Cổ phiếu (Q4/2024)</h1>
+        <div class="buttons" id="metricButtons"></div>
+        <div id="loading" class="status-indicator" style="display: none;">Đang tải dữ liệu từ API...</div>
+        <div id="error" class="status-indicator"></div>
+        <div class="chart-container" id="chartContainer">
+          <canvas id="financialChart"></canvas>
+          <div id="chartMessage" class="chart-message"></div>
+        </div>
+      </div>
+
+      <!-- Tab: Bảng giá -->
+      <div id="tab-bang-gia" class="tab-content">
+        <h1>Dữ liệu Chứng khoán Trực tiếp</h1>
+        <div id="stock-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã CK</th>
+                <th>Giá Hiện tại</th>
+                <th>Giá Tham chiếu</th>
+                <th>Thay đổi</th>
+                <th>% Thay đổi</th>
+                <th>Khối lượng</th>
+              </tr>
+            </thead>
+            <tbody id="stock-data-body"></tbody>
+          </table>
+        </div>
+        <div id="error-message" class="error"></div>
+      </div>
+
+
+      <!-- Tab: Tin tức -->
+      <div id="tab-news" class="tab-content">
+        <h1 style="position: sticky; top: 0; background:var(--color-white);">Tin tức</h1>
+        <div id="newsList" class="space-y-4"></div>
+
+        <div id="overlay" class="overlay"></div>
+        <div id="popup" class="popup">
+          <h2 id="popupTitle"></h2>
+          <p id="popupContent"></p>
+          <p id="popupPublished"></p>
+          <a id="popupLink" target="_blank"></a>
+          <button onclick="closePopup()">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+
+
+      <script src="/static/js/priceboard.js"></script>
+      <script>
+        // Tab switching logic
+        function showTab(tabId) {
+          document.querySelectorAll('.tab-content').forEach(function (el) {
+            el.classList.remove('active');
+          });
+          document.getElementById(tabId).classList.add('active');
+          document.querySelectorAll('.tab-btn').forEach(function (btn) {
+            btn.classList.remove('active');
+          });
+          const btns = document.querySelectorAll('.tab-btn');
+          if (tabId === 'tab-index') btns[0].classList.add('active');
+          if (tabId === 'tab-tree-map') btns[1].classList.add('active');
+          if (tabId === 'tab-tong-von-hoa') btns[2].classList.add('active');
+          if (tabId === 'tab-bieu-do-tron') btns[3].classList.add('active');
+          if (tabId === 'tab-bang-gia') btns[4].classList.add('active');
+          if (tabId === 'tab-news') btns[5].classList.add('active');
+        }
+        // WebSocket cho bảng giá (giữ nguyên logic từ bang_gia.html)
+        const stockTableBody = document.getElementById("stock-data-body");
+        const errorMessageDiv = document.getElementById("error-message");
+        const socket = new WebSocket("ws://127.0.0.1:8000/ws/stock-updates");
+        socket.onopen = function (event) {
+          console.log("Kết nối WebSocket đã mở:", event);
+          errorMessageDiv.textContent = "";
+        };
+        socket.onmessage = function (event) {
+          try {
+            const dataReceived = JSON.parse(event.data);
+            if (dataReceived && dataReceived.error) {
+              errorMessageDiv.textContent = "Lỗi từ server: " + dataReceived.error;
+              return;
+            }
+            if (!Array.isArray(dataReceived)) {
+              errorMessageDiv.textContent = "Dữ liệu nhận được không phải là một danh sách hợp lệ.";
+              return;
+            }
+            errorMessageDiv.textContent = "";
+            stockTableBody.innerHTML = "";
+            if (dataReceived.length === 0) {
+              const row = stockTableBody.insertRow();
+              const cell = row.insertCell();
+              cell.colSpan = 6;
+              cell.textContent = "Không có dữ liệu chứng khoán nào.";
+              return;
+            }
+            dataReceived.forEach((stock) => {
+              const row = stockTableBody.insertRow();
+              function createCell(text) {
+                const cell = row.insertCell();
+                cell.textContent = text !== null && text !== undefined ? text.toString() : "N/A";
+                return cell;
+              }
+              function createNumericCell(value, isPercentage = false, addPlusSign = false) {
+                const cell = row.insertCell();
+                if (value !== null && value !== undefined && !isNaN(parseFloat(value))) {
+                  let displayValue = parseFloat(value);
+                  let text = displayValue.toLocaleString(undefined, { minimumFractionDigits: isPercentage ? 2 : 0, maximumFractionDigits: 2 });
+                  if (isPercentage) text += "%";
+                  if (addPlusSign && displayValue > 0) text = "+" + text;
+                  cell.textContent = text;
+                  if (isPercentage || addPlusSign) {
+                    if (displayValue > 0) {
+                      cell.className = "positive";
+                    } else if (displayValue < 0) {
+                      cell.className = "negative";
+                    } else {
+                      cell.className = "neutral";
+                    }
+                  }
+                } else {
+                  cell.textContent = "N/A";
+                }
+                return cell;
+              }
+              createCell(stock.symbol);
+              createNumericCell(stock.current_price);
+              createNumericCell(stock.prior_close);
+              createNumericCell(stock.price_change, false, true);
+              createNumericCell(stock.percent_change, true);
+              createNumericCell(stock.volume);
+            });
+          } catch (e) {
+            errorMessageDiv.textContent = "Lỗi xử lý dữ liệu phía client: " + e.message;
+          }
+        };
+        socket.onerror = function (error) {
+          console.error("Lỗi WebSocket:", error);
+          errorMessageDiv.textContent = "Lỗi kết nối WebSocket. Vui lòng kiểm tra lại.";
+        };
+        socket.onclose = function (event) {
+          console.log("Kết nối WebSocket đã đóng:", event);
+          let reasonText = "";
+          if (event.code || event.reason) {
+            reasonText = ` (Mã: ${event.code || "N/A"}, Lý do: ${event.reason || "N/A"})`;
+          }
+          if (!event.wasClean) {
+            errorMessageDiv.textContent = "Kết nối WebSocket đã bị ngắt đột ngột." + reasonText;
+          } else {
+            errorMessageDiv.textContent = "Kết nối WebSocket đã đóng." + reasonText;
+          }
+        };
+      </script>
+    </main>
+    <!-- End of Main Content -->
+  </div>
+
+  <script src="/static/js/index.js"></script>
+  <script src="/static/js/stock.js"></script>
+  <script src="/static/js/priceboard.js"></script>
+  <script src="/static/js/sidebar.js"></script>
+</body>
+
+</html>
